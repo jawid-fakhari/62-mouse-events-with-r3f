@@ -1,8 +1,10 @@
 import { useFrame } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, useGLTF } from '@react-three/drei'
 import { useRef } from 'react'
 
 export default function Experience() {
+    const hamburger = useGLTF('./hamburger.glb')
+
     const cube = useRef()
 
     useFrame((state, delta) => {
@@ -31,16 +33,19 @@ export default function Experience() {
         </mesh>
 
         <mesh
+            ref={cube}
+            position-x={2}
+            scale={1.5}
+            onClick={(e) => {
+                eventHandlre()
+                e.stopPropagation()
+            }}
             onPointerEnter={() => {
                 document.body.style.cursor = 'pointer'
             }}
             onPointerLeave={() => {
                 document.body.style.cursor = 'default'
             }}
-            ref={cube}
-            position-x={2}
-            scale={1.5}
-            onClick={eventHandlre}
         //onContextMenu : right click, lon press on mobile
         //onDoubleClick
         //onPointerOver, onPointerEnter, onPointerMove, onPointerMissed, onPointerLeave 
@@ -54,6 +59,16 @@ export default function Experience() {
             <planeGeometry />
             <meshStandardMaterial color="greenyellow" />
         </mesh>
+
+        <primitive
+            object={hamburger.scene}
+            scale={0.25}
+            position-y={0.5}
+            onClick={(e) => {
+                console.log(e.object.name);
+                e.stopPropagation()
+            }}
+        />
 
     </>
 }
