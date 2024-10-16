@@ -25,7 +25,16 @@ export default function Experience() {
             <meshStandardMaterial color="orange" />
         </mesh>
 
-        <mesh ref={cube} position-x={2} scale={1.5} onClick={eventHandlre}>
+        <mesh
+            ref={cube}
+            position-x={2}
+            scale={1.5}
+            onClick={eventHandlre}
+        //onContextMenu : right click, lon press on mobile
+        //onDoubleClick
+        //onPointerOver, onPointerEnter, onPointerMove, onPointerMissed, onPointerLeave 
+
+        >
             <boxGeometry />
             <meshStandardMaterial />
         </mesh>
