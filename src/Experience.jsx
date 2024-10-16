@@ -20,13 +20,23 @@ export default function Experience() {
         <directionalLight position={[1, 2, 3]} intensity={4.5} />
         <ambientLight intensity={1.5} />
 
-        {/* Come Occludere un oggetto per far passare il raycast click attraverso */}
-        <mesh position-x={- 2} onClick={(e) => e.stopPropagation()}>
+        {/* Come Occludere un oggetto per far passare il raycast click/pointer attraverso */}
+        <mesh
+            position-x={- 2}
+            onClick={(e) => e.stopPropagation()}
+            onPointerEnter={(e) => e.stopPropagation()}
+        >
             <sphereGeometry />
             <meshStandardMaterial color="orange" />
         </mesh>
 
         <mesh
+            onPointerEnter={() => {
+                document.body.style.cursor = 'pointer'
+            }}
+            onPointerLeave={() => {
+                document.body.style.cursor = 'default'
+            }}
             ref={cube}
             position-x={2}
             scale={1.5}
